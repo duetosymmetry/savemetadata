@@ -3,7 +3,7 @@ import logging
 import re
 
 def png_metadata():
-    """Document me"""
+    """Generate a dict to pass as `metadata=` when writing a PNG"""
 
     try:
         import __main__
@@ -13,7 +13,7 @@ def png_metadata():
         return {}
 
 def stringify_metadata(path):
-    """Document me"""
+    """Underlying code to generate the metadata string, for any file format"""
 
     path = Path(path)
 
@@ -28,7 +28,7 @@ def stringify_metadata(path):
     return magic+namestr+datastr
 
 def extract_metadata_png(path):
-    """Document me"""
+    """Pull the filename and source code out of a PNG file's Description field"""
 
     try:
         from PIL import Image
@@ -51,7 +51,7 @@ def extract_metadata_png(path):
     return meta
 
 def extract_metadata_string(str):
-    """Extract the metadata contents from a string"""
+    """Extract the metadata contents from a string, from any file format"""
 
     meta_pat_01 = '^META01;name="(.*?)(?<!\\\\)";(.*)$'
     extractor = re.compile(meta_pat_01, flags=re.DOTALL)
